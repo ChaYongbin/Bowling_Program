@@ -10,48 +10,14 @@ public class BowlingCalTest extends TestCase {
 		int target = cal.run(1, 3, 4);
 		assertEquals(7, target);
 	}
-	public void testCalculatorTwoFrame() throws Exception {
+	public void testCalculatorTwoFrameSpare() throws Exception {
 		BowlingCal cal = new BowlingCal();
 		
-		int target = cal.run(1, 3, 4);
-		assertEquals(7, target);
-		
-		target = cal.run(2, 1, 8);
-		assertEquals(16 , target);
+		cal.run(1, 9, 1);
+		assertEquals(10, cal.frmScr[1]);
+		cal.run(2, 8, 1);
+		assertEquals(18,cal.frmScr[1]);
+		assertEquals(27, cal.frmScr[2]);
 	}
-	public void testCalculatorFullFrame() throws Exception {
-		BowlingCal cal = new BowlingCal();
-		
-		int target = cal.run(1, 3, 4);
-		assertEquals(7, target);
-		
-		target = cal.run(2, 1, 8);
-		assertEquals(16 , target);
-		
-		target = cal.run(3, 7, 1);
-		assertEquals(24, target);
-		
-		target = cal.run(4, 9, 0);
-		assertEquals(33, target);
-		
-		target = cal.run(5, 0, 0);
-		assertEquals(33, target);
-		
-		target = cal.run(6, 8, 0);
-		assertEquals(41, target);
-		
-		target = cal.run(7, 8, 1);
-		assertEquals(50, target);
-		
-		target = cal.run(8, 1, 0);
-		assertEquals(51, target);
-		
-		target = cal.run(9, 2, 3);
-		assertEquals(56, target);
-		
-		target = cal.run(10, 4, 1);
-		assertEquals(61, target);
-	}
-	
 }
 
