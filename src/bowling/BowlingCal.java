@@ -36,6 +36,38 @@ public class BowlingCal {
 		return score;
 	}
 	
+	public void saveFrameScore() {
+		for(int frame=0; frame < 10; frame++) {
+			if(frame == 0) {
+				frameScoreCal(frame);
+				continue;
+			}
+			frameScoreCal(frame);
+			continue;
+		}
+	}
+	
+	public void frameScoreCal(int frame) {
+		if(isNextStrike(nowFrame)) {
+			frameScr[frame] += 20 + fallPins[nowFrame + 4];
+			nowFrame += 2;
+			return;
+		}
+		if(isStrike(nowFrame)) {
+			frameScr[frame] += 10 + fallPins[nowFrame + 2] + fallPins[nowFrame + 3];
+			nowFrame += 2;
+			return;
+		}
+		if(isSpare(nowFrame)) {
+			frameScr[frame] += 10 + fallPins[nowFrame + 2];
+			nowFrame += 2;
+			return;
+		}
+		frameScr[frame] += fallPins[nowFrame] + fallPins[nowFrame + 1];
+		nowFrame += 2;	
+		return;
+	}
+	
 	public Boolean isSpare(int nowFrame) {
 		return fallPins[nowFrame] + fallPins[nowFrame + 1] == 10;
 	}

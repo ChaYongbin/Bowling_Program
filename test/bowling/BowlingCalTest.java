@@ -80,5 +80,31 @@ public class BowlingCalTest extends TestCase {
 		
 		assertEquals(70, cal.scoreCal());
 	}
+	public void testOneFrameScore() throws Exception {
+		cal.savePinPoint(10); // 30
+		cal.savePinPoint(0); // 30
+		cal.savePinPoint(10); // 52
+		cal.savePinPoint(0); // 52
+		cal.savePinPoint(10); // 66
+		cal.savePinPoint(0); // 66
+		cal.savePinPoint(2); // 68
+		cal.savePinPoint(2); // 70
+		cal.saveFrameScore();
+		
+		assertEquals(30, cal.frameScr[0]);
+	}
+	public void testTwoFrameScore() throws Exception {
+		cal.savePinPoint(10); // 30
+		cal.savePinPoint(0); // 30
+		cal.savePinPoint(10); // 52
+		cal.savePinPoint(0); // 52
+		cal.savePinPoint(10); // 66
+		cal.savePinPoint(0); // 66
+		cal.savePinPoint(2); // 68
+		cal.savePinPoint(2); // 70
+		cal.saveFrameScore();
+		
+		assertEquals(52, cal.frameScr[1]);
+	}
 }
 
