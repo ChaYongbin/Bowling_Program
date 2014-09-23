@@ -2,56 +2,43 @@ package bowling;
 
 public class BowlingCal {
 	
-	int[] thrBall = new int [21]; // 공을 던지는 것은 한 게임당 최대 21번이다.
-	int[] frmScore = new int [10]; 
+	int[] fallPins = new int[20];
+	int[] frameScr = new int[10];
 	int count = 0;
-	
-	public void fallPins(int pins) {
-		thrBall[count] = pins;
+	int nowFrame = 0;
+
+	public void savePinPoint(int point) {
+		fallPins[count] = point;
 		count++;
 	}
-	
-	public int frameScore(int inFrame) {
-		int frame = inFrame * 2;
-		if(inFrame - 1 == -1) {
-			if(isSpare(frame) && thrBall[frame] != 10) {
-				return thrBall[frame] + thrBall[frame + 1] + thrBall[frame + 2];
+
+	public int scoreCal() {
+		int score = 0;
+		for(int frame=0; frame < 10; frame++) {
+			if(isStrike(nowFrame)) {
+				score += 10 + fallPins[nowFrame + 2] + fallPins[nowFrame + 3];
+				nowFrame += 2;
+				continue;
 			}
-			if(isStrike(frame) && thrBall[frame + 2] != 10) {
-				return thrBall[frame] + thrBall[frame + 2] + thrBall[frame + 3];
+			if(isSpare(nowFrame)) {
+				score += 10 + fallPins[nowFrame + 2];
+				nowFrame += 2;
+				continue;
 			}
-			if(isNextStrike(frame)) {
-				return thrBall[frame] + thrBall[frame + 2] + thrBall[frame + 4];
-			}
-			return thrBall[frame] + thrBall[frame + 1];
+			score += fallPins[nowFrame] + fallPins[nowFrame + 1];
+			nowFrame += 2;
 		}
-		if(isSpare(frame) && thrBall[frame] != 10) {
-			return frmScore[inFrame - 1] + thrBall[frame] + thrBall[frame + 1] + thrBall[frame + 2];
-		}
-		if(isStrike(frame) && thrBall[frame + 2] != 10) {
-			return frmScore[inFrame - 1] + thrBall[frame] + thrBall[frame + 2] + thrBall[frame + 3];
-		}
-		if(isNextStrike(frame)) {
-			return frmScore[inFrame - 1] + thrBall[frame] + thrBall[frame + 2] + thrBall[frame + 4];
-		}
-		return frmScore[inFrame - 1] + thrBall[frame] + thrBall[frame + 1];
+		return score;
 	}
 	
-	public int sumFrameScore() {
-		int scr = 0;
-		for(int frame = 0; frame < 10; frame++) {
-			scr += frmScore[frame];
-		}
-		return scr;
+	public Boolean isSpare(int nowFrame) {
+		return fallPins[nowFrame] + fallPins[nowFrame + 1] == 10;
+	}
+	public Boolean isStrike(int nowFrame) {
+		return fallPins[nowFrame] == 10;
+	}
+	public Boolean notBeforeNull(int nowFrame) {
+		return nowFrame - 1 != -1;
 	}
 	
-	public Boolean isSpare(int frame) {
-		return thrBall[frame] + thrBall[frame + 1] == 10;
-	}
-	public Boolean isStrike(int frame) {
-		return thrBall[frame] == 10;
-	}
-	public Boolean isNextStrike(int frame) {
-		return thrBall[frame + 2] == 10;
-	}
 }
