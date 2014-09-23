@@ -21,7 +21,6 @@ public class BowlingCalTest extends TestCase {
 			cal.savePinPoint(1);
 		assertEquals(20, cal.scoreCal());
 	}
-	
 	// testSpare
 	public void testOneFrameSpare() throws Exception {
 		cal.savePinPoint(5);
@@ -56,9 +55,30 @@ public class BowlingCalTest extends TestCase {
 		cal.savePinPoint(3); // 20
 		cal.savePinPoint(4); // 24
 		
-		
 		assertEquals(24, cal.scoreCal());
 	}
-	
+	public void testOneFrameDoubleStrike() throws Exception {
+		cal.savePinPoint(10); // 24
+		cal.savePinPoint(0); // 24
+		cal.savePinPoint(10); // 39 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(4); // 43
+		cal.savePinPoint(1); // 44
+		cal.savePinPoint(2); // 46
+		
+		assertEquals(46, cal.scoreCal());
+	}
+	public void testOneFrameTripleStrike() throws Exception {
+		cal.savePinPoint(10); // 30
+		cal.savePinPoint(0); // 30
+		cal.savePinPoint(10); // 52
+		cal.savePinPoint(0); // 52
+		cal.savePinPoint(10); // 66
+		cal.savePinPoint(0); // 66
+		cal.savePinPoint(2); // 68
+		cal.savePinPoint(2); // 70
+		
+		assertEquals(70, cal.scoreCal());
+	}
 }
 

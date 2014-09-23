@@ -15,6 +15,11 @@ public class BowlingCal {
 	public int scoreCal() {
 		int score = 0;
 		for(int frame=0; frame < 10; frame++) {
+			if(isNextStrike(nowFrame)) {
+				score += 20 + fallPins[nowFrame + 4];
+				nowFrame += 2;
+				continue;
+			}
 			if(isStrike(nowFrame)) {
 				score += 10 + fallPins[nowFrame + 2] + fallPins[nowFrame + 3];
 				nowFrame += 2;
@@ -37,8 +42,8 @@ public class BowlingCal {
 	public Boolean isStrike(int nowFrame) {
 		return fallPins[nowFrame] == 10;
 	}
-	public Boolean notBeforeNull(int nowFrame) {
-		return nowFrame - 1 != -1;
+	public Boolean isNextStrike(int nowFrame) {
+		return fallPins[nowFrame] == 10 && fallPins[nowFrame + 2] == 10;
 	}
 	
 }
