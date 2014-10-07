@@ -6,16 +6,17 @@ public class BowlingCal {
 	int[] frameScr = new int[10];
 	int count = 0;
 	int nowFrame = 0;
+	//int score = 0;
 
 	public void savePinPoint(int point) {
 		fallPins[count] = point;
 		count++;
 	}
 
-	public int scoreCal() {
+	public int scoreCal(int frame) {
 		int score = 0;
-		for(int frame=0; frame < 10; frame++) {
-			if(frame == 9) {
+		for(int i=0; i < frame; i++) {
+			if(i == 9) {
 				score += fallPins[nowFrame] + fallPins[nowFrame + 1] + fallPins[nowFrame + 2];  
 				continue;
 			}
