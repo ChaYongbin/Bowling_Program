@@ -80,31 +80,104 @@ public class BowlingCalTest extends TestCase {
 		
 		assertEquals(70, cal.scoreCal());
 	}
-	public void testOneFrameScore() throws Exception {
-		cal.savePinPoint(10); // 30
-		cal.savePinPoint(0); // 30
-		cal.savePinPoint(10); // 52
-		cal.savePinPoint(0); // 52
-		cal.savePinPoint(10); // 66
-		cal.savePinPoint(0); // 66
-		cal.savePinPoint(2); // 68
-		cal.savePinPoint(2); // 70
-		cal.saveFrameScore();
+	public void testFullFrame() throws Exception {
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(9); // 
+		cal.savePinPoint(1); // 
+		cal.savePinPoint(1); // 
+		cal.savePinPoint(4); //
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(2); // 
+		cal.savePinPoint(8); // 
+		cal.savePinPoint(4); // 
+		cal.savePinPoint(1); // 
+		cal.savePinPoint(9); // 
+		cal.savePinPoint(1); //
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(1); // 
+		cal.savePinPoint(4); //
 		
-		assertEquals(30, cal.frameScr[0]);
+		assertEquals(144, cal.scoreCal());
 	}
-	public void testTwoFrameScore() throws Exception {
-		cal.savePinPoint(10); // 30
-		cal.savePinPoint(0); // 30
-		cal.savePinPoint(10); // 52
-		cal.savePinPoint(0); // 52
-		cal.savePinPoint(10); // 66
-		cal.savePinPoint(0); // 66
-		cal.savePinPoint(2); // 68
-		cal.savePinPoint(2); // 70
-		cal.saveFrameScore();
+	public void testBonusFrameWhenSpare() throws Exception {
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(9); // 
+		cal.savePinPoint(1); // 
+		cal.savePinPoint(1); // 
+		cal.savePinPoint(4); //
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(2); // 
+		cal.savePinPoint(8); // 
+		cal.savePinPoint(4); // 
+		cal.savePinPoint(1); // 
+		cal.savePinPoint(9); // 
+		cal.savePinPoint(1); //
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(1); // 
+		cal.savePinPoint(9); //
+		cal.savePinPoint(4); //
 		
-		assertEquals(52, cal.frameScr[1]);
+		assertEquals(158, cal.scoreCal());
+	}
+	public void testBonusFrameWhenStrike() throws Exception {
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(9); // 
+		cal.savePinPoint(1); // 
+		cal.savePinPoint(1); // 
+		cal.savePinPoint(4); //
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(2); // 
+		cal.savePinPoint(8); // 
+		cal.savePinPoint(4); // 
+		cal.savePinPoint(1); // 
+		cal.savePinPoint(9); // 
+		cal.savePinPoint(1); //
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); //
+		cal.savePinPoint(4); //
+		
+		assertEquals(162, cal.scoreCal());
+	}
+	public void testFullStrike() throws Exception {
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(0); // 
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(10); // 
+		cal.savePinPoint(10); //
+		
+		
+		assertEquals(300, cal.scoreCal());
 	}
 }
-

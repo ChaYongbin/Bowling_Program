@@ -2,7 +2,7 @@ package bowling;
 
 public class BowlingCal {
 	
-	int[] fallPins = new int[20];
+	int[] fallPins = new int[21];
 	int[] frameScr = new int[10];
 	int count = 0;
 	int nowFrame = 0;
@@ -15,6 +15,10 @@ public class BowlingCal {
 	public int scoreCal() {
 		int score = 0;
 		for(int frame=0; frame < 10; frame++) {
+			if(frame == 9) {
+				score += fallPins[nowFrame] + fallPins[nowFrame + 1] + fallPins[nowFrame + 2];  
+				continue;
+			}
 			if(isNextStrike(nowFrame)) {
 				score += 20 + fallPins[nowFrame + 4];
 				nowFrame += 2;
@@ -34,38 +38,6 @@ public class BowlingCal {
 			nowFrame += 2;
 		}
 		return score;
-	}
-	
-	public void saveFrameScore() {
-		for(int frame=0; frame < 10; frame++) {
-			if(frame == 0) {
-				frameScoreCal(frame);
-				continue;
-			}
-			frameScoreCal(frame);
-			continue;
-		}
-	}
-	
-	public void frameScoreCal(int frame) {
-		if(isNextStrike(nowFrame)) {
-			frameScr[frame] += 20 + fallPins[nowFrame + 4];
-			nowFrame += 2;
-			return;
-		}
-		if(isStrike(nowFrame)) {
-			frameScr[frame] += 10 + fallPins[nowFrame + 2] + fallPins[nowFrame + 3];
-			nowFrame += 2;
-			return;
-		}
-		if(isSpare(nowFrame)) {
-			frameScr[frame] += 10 + fallPins[nowFrame + 2];
-			nowFrame += 2;
-			return;
-		}
-		frameScr[frame] += fallPins[nowFrame] + fallPins[nowFrame + 1];
-		nowFrame += 2;	
-		return;
 	}
 	
 	public Boolean isSpare(int nowFrame) {
