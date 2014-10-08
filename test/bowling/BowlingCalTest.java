@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 
 public class BowlingCalTest extends TestCase {
 	
-	BowlingCal cal;
+	/*BowlingCal cal;
 	
 	public void setUp() {
 		cal = new BowlingCal();
@@ -230,5 +230,5 @@ public class BowlingCalTest extends TestCase {
 		cal.savePinPoint(10); // 
 		cal.savePinPoint(0); // 85
 		assertEquals(60, cal.scoreCal(3));
-	}
+	}*/
 }

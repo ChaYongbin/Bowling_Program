@@ -1,54 +1,51 @@
 package bowling;
 
 public class BowlingCal {
-	
-	int[] fallPins = new int[21];
-	int[] frameScr = new int[10];
-	int count = 0;
-	int nowFrame = 0;
-	//int score = 0;
 
-	public void savePinPoint(int point) {
-		fallPins[count] = point;
-		count++;
-	}
-
-	public int scoreCal(int frame) {
-		int score = 0;
+	public int scoreCal(Player type, int frame) {
+		//Format Data 
+		type.score = 0;
+		type.nowFrame = 0;
+		
+		//Calculator
 		for(int i=0; i < frame; i++) {
+			//LastFrame
 			if(i == 9) {
-				score += fallPins[nowFrame] + fallPins[nowFrame + 1] + fallPins[nowFrame + 2];  
+				type.score += type.fallPins[type.nowFrame] + type.fallPins[type.nowFrame + 1] + type.fallPins[type.nowFrame + 2];  
 				continue;
 			}
-			if(isNextStrike(nowFrame)) {
-				score += 20 + fallPins[nowFrame + 4];
-				nowFrame += 2;
+			
+			if(isNextStrike(type,type.nowFrame)) {
+				type.score += 20 + type.fallPins[type.nowFrame + 4];
+				type.nowFrame += 2;
 				continue;
 			}
-			if(isStrike(nowFrame)) {
-				score += 10 + fallPins[nowFrame + 2] + fallPins[nowFrame + 3];
-				nowFrame += 2;
+			if(isStrike(type,type.nowFrame)) {
+				type.score += 10 + type.fallPins[type.nowFrame + 2] + type.fallPins[type.nowFrame + 3];
+				type.nowFrame += 2;
 				continue;
 			}
-			if(isSpare(nowFrame)) {
-				score += 10 + fallPins[nowFrame + 2];
-				nowFrame += 2;
+			if(isSpare(type,type.nowFrame)) {
+				type.score += 10 + type.fallPins[type.nowFrame + 2];
+				type.nowFrame += 2;
 				continue;
 			}
-			score += fallPins[nowFrame] + fallPins[nowFrame + 1];
-			nowFrame += 2;
+			type.score += type.fallPins[type.nowFrame] + type.fallPins[type.nowFrame + 1];
+			type.nowFrame += 2;
 		}
-		return score;
+		return type.score;
 	}
 	
-	public Boolean isSpare(int nowFrame) {
-		return fallPins[nowFrame] + fallPins[nowFrame + 1] == 10;
+	private Boolean isSpare(Player type, int nowFrame) {
+		return type.fallPins[nowFrame] + type.fallPins[nowFrame + 1] == 10;
 	}
-	public Boolean isStrike(int nowFrame) {
-		return fallPins[nowFrame] == 10;
+	
+	private Boolean isStrike(Player type, int nowFrame) {
+		return type.fallPins[nowFrame] == 10;
 	}
-	public Boolean isNextStrike(int nowFrame) {
-		return fallPins[nowFrame] == 10 && fallPins[nowFrame + 2] == 10;
+	
+	private Boolean isNextStrike(Player type, int nowFrame) {
+		return type.fallPins[nowFrame] == 10 && type.fallPins[nowFrame + 2] == 10;
 	}
 	
 }
