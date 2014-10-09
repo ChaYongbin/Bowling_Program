@@ -1,12 +1,10 @@
 package bowling;
 
 public class BowlingCal {
-
 	public int scoreCal(Player type, int frame) {
 		//Format Data 
 		type.score = 0;
 		type.nowFrame = 0;
-		
 		//Calculator
 		for(int i=0; i < frame; i++) {
 			//LastFrame
@@ -14,7 +12,6 @@ public class BowlingCal {
 				type.score += type.fallPins[type.nowFrame] + type.fallPins[type.nowFrame + 1] + type.fallPins[type.nowFrame + 2];  
 				continue;
 			}
-			
 			if(isNextStrike(type,type.nowFrame)) {
 				type.score += 20 + type.fallPins[type.nowFrame + 4];
 				type.nowFrame += 2;
@@ -47,5 +44,4 @@ public class BowlingCal {
 	private Boolean isNextStrike(Player type, int nowFrame) {
 		return type.fallPins[nowFrame] == 10 && type.fallPins[nowFrame + 2] == 10;
 	}
-	
 }

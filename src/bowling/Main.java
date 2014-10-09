@@ -3,7 +3,6 @@ package bowling;
 import java.util.Scanner;
 
 public class Main {
-	
 	public static Scanner scan = new Scanner(System.in);
 	public static BowlingCal cal = new BowlingCal();
 	public static SavePoint save = new SavePoint();
@@ -19,7 +18,7 @@ public class Main {
 	}
 	
 	private static void BonusFrame(Player type){
-		System.out.println( "Bonus Frame");
+		System.out.println("Bonus Frame");
 		save.bonusPoint(type);
 		cal.scoreCal(type, 10);
 	}
@@ -27,7 +26,6 @@ public class Main {
 	private static void TotalScore(Player type){
 		System.out.println("최종 점수는 " + type.score + "점 입니다.");
 	}
-	
 	
 	private static Boolean isBonus(Player type){
 		return type.fallPins[19] + type.fallPins[20] >= 10;
