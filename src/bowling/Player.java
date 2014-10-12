@@ -1,13 +1,13 @@
 package bowling;
 
-public enum Player {
-	PLAYER_A, PLAYER_B, PLAYER_C;
-	public int count, score, nowFrame;
-	public int[] fallPins;
+public class Player {
+	public int[] pins;
+	public String name;
+	public int playerScore;
+	
 	Player() {
-		fallPins = new int[21];
-		count = 0;
-		score = 0;
-		nowFrame = 0;
+		name = null;
+		playerScore = 0;
+		pins = new int[21];
 	}
 }
