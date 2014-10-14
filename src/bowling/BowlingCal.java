@@ -20,6 +20,37 @@ public class BowlingCal {
 		}
 	}
 	
+	public String frameStatusBoard(Player player) {
+		StringBuffer sb = new StringBuffer();
+		int nowFrame = 0;
+		for (int frame = 0; frame < 10; frame++) {
+			if (frame == 9) {
+				if (isStrike(player, nowFrame)) {
+					sb.append("| X " + "| " + player.pins[nowFrame + 1] + " | " + player.pins[nowFrame + 2] + " |");
+					nowFrame++;
+				} else if (isSpare(player, nowFrame)) {
+					sb.append("| " + player.pins[nowFrame] + " | " + "/ " + player.pins[nowFrame + 2] + " |");
+					nowFrame += 2;
+				} else {
+					sb.append("| " + player.pins[nowFrame] + " | " + player.pins[nowFrame + 1] + " | " + player.pins[nowFrame + 2] + " |");
+					nowFrame += 2;
+				}
+				break;
+			}
+			if (isStrike(player, nowFrame)) {
+				sb.append("|   X   ");
+				nowFrame++;
+			} else if (isSpare(player, nowFrame)) {
+				sb.append("| " + player.pins[nowFrame] + " | " + "/"+ " ");
+				nowFrame += 2;
+			} else {
+				sb.append("| " + player.pins[nowFrame] + " | " + player.pins[nowFrame + 1] + " ");
+				nowFrame += 2;
+			}
+		}
+		return sb.toString();
+	}
+	
 	private Boolean isStrike(Player player, int nowFrame) {
 		return player.pins[nowFrame] == 10;
 	}

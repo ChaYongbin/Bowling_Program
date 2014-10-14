@@ -2,29 +2,39 @@ package bowling;
 
 public class PlayerInfo extends ScanInfo{
 	
-	public int index;
-	
 	public void framePins(Player player){
-		index = 0;
+		player.count = 0;
 		for(int frame=0; frame < 9; frame++){
-			firstBall(player, index);
-			if(player.pins[index] == 10){
-				index++;
+			firstBall(player, player.count);
+			if(player.pins[player.count] == 10){
+				player.count++;
 				continue;
 			}
-			index++;
-			secondBall(player, index);
-			index++;
+			player.count++;
+			secondBall(player, player.count);
+			player.count++;
 		}
 	}
 	
+	public void savePins(Player player){
+		firstBall(player, player.count);
+		if(player.pins[player.count] == 10){
+			player.count++;
+			return;
+		}
+		player.count++;
+		secondBall(player, player.count);
+		player.count++;
+	}
+	
+	
 	public void lastFramePins(Player player){
-		firstBall(player, index);
-		index++;
-		secondBall(player, index);
-		index++;
-		if(player.pins[index - 2] + player.pins[index - 1] >= 10){
-			bonusBall(player, index);
+		firstBall(player, player.count);
+		player.count++;
+		secondBall(player, player.count);
+		player.count++;
+		if(player.pins[player.count - 2] + player.pins[player.count - 1] >= 10){
+			bonusBall(player, player.count);
 		}
 	}
 }

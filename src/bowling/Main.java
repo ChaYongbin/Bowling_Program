@@ -5,9 +5,15 @@ public class Main {
 		PrintScore print = new PrintScore();
 		
 		System.out.println("안녕하세요. 볼링게임입니다.");
-		print.gameSet();
+    	print.gameSet();
+		
+		for(int i = 0; i < 10; i++){
+			print.getPins(i);
+		}
 		print.scoreCal();
 		print.totalScore();
 		System.out.println("END");
+		
+		
 	}
 }
